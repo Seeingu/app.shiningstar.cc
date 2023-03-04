@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { platform } from "os";
 import { titleFont } from "../font";
 import { knockApp } from "../shared/apps";
 import { AppStruct, PlatformOS, Screenshot } from "../shared/AppStruct";
@@ -10,7 +9,7 @@ import { VStack } from "../ui/VStack";
 const PlatformScreenshotSection = (props: { platform: PlatformOS, list: Screenshot[] }) => {
     const { platform, list } = props
     const title = platform === PlatformOS.macOS ? "macOS" : "iOS"
-    return <div style={{ padding: '1rem 0' }}>
+    return <div style={{ width: '100%', padding: '1rem 0' }}>
         <h3>{title}</h3>
         <HStack>
             {list.map(s => {
@@ -20,12 +19,9 @@ const PlatformScreenshotSection = (props: { platform: PlatformOS, list: Screensh
                     width = 1179 / 4
                     height = 2556 / 4
                 }
-
-                return <Image alt={s.url} src={s.url} width={width} height={height} />
+                return <Image key={s.url} alt={s.url} src={s.url} width={width} height={height} />
             })}
-
         </HStack>
-
     </div>
 }
 
@@ -34,7 +30,7 @@ const Screenshots = ({ app }: { app: AppStruct }) => {
     const iOSScreenshots = app.screenshots.filter(s => s.os === PlatformOS.iOS).slice(0, 3)
     const macOSScreenshots = app.screenshots.filter(s => s.os === PlatformOS.macOS).slice(0, 3)
 
-    return <div>
+    return <div style={{ width: '100%' }}>
         <h2 style={{
             fontWeight: 'bold',
             padding: '16px 0',

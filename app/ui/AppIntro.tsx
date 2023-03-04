@@ -18,13 +18,13 @@ const PlatformLink = ({ platform }: { platform: Platform }) => {
     }
     // phone or tablet
     if (isMobile && platform.os !== PlatformOS.macOS) {
-        return <Link key={link.url} href={link.url}>
+        return <Link href={link.url}>
             <DownloadOniOSStoreIcon url={link.icon} />
         </Link>
     }
     // desktop
     if (!isMobile && platform.os === PlatformOS.macOS) {
-        return <Link key={link.url} href={link.url}>
+        return <Link href={link.url}>
             <DownloadOnmacOSStoreIcon url={link.icon} />
         </Link>
 
@@ -58,7 +58,7 @@ export const AppIntro = ({ app }: { app: AppStruct }) => {
             </HStack>
             <HStack>
                 {app.platforms.map(platform =>
-                    <PlatformLink platform={platform} />
+                    <PlatformLink key={platform.os} platform={platform} />
                 )}
             </HStack>
         </VStack>
