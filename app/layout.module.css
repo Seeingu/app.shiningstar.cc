@@ -1,0 +1,10 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem;
+    padding-bottom: 1rem;
+    min-height: 100vh;
+    background: #D9F3EE;
+}
