@@ -2,9 +2,11 @@ import { AppStruct, PlatformOS } from "./AppStruct"
 
 export const knockApp: AppStruct = {
     name: 'Knock',
+    path: '/knock',
     description: 'Counter and notification',
     icon: '/Knock_Icon.png',
     accentColor: '#5AADD0',
+    subpaths: [{ name: 'Privacy', path: '/knock/privacy' }],
     screenshots: [{
         os: PlatformOS.iOS,
         url: '/Knock_iOS Home_History_List.png'

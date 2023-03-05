@@ -20,6 +20,8 @@ export interface Screenshot {
 }
 export interface AppStruct {
     name: string
+    path: string
+    subpaths: Array<{ name: string, path: string }>
     description: string
     icon: URL
     accentColor: string

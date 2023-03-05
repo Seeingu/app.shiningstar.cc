@@ -3,22 +3,27 @@
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useRequestApps } from '../request'
-import { AppIcon, Icon } from './Icon'
+import { Icon } from './Icon'
 import { IoChevronBackOutline } from 'react-icons/io5'
 import { useMemo } from 'react'
 import { titleFont } from '../font'
+import { AppStruct } from '../shared/AppStruct'
 
+
+const useIsRootPath = () => {
+    const pathName = usePathname()
+    return useMemo(() => pathName === "/", [pathName])
+}
 
 const Brand = () => {
     let router = useRouter()
-    const pathName = usePathname()
 
 
     const handleClick = () => {
         router.push('/')
     }
 
-    const isRoot = useMemo(() => pathName === "/", [pathName])
+    const isRoot = useIsRootPath()
 
     const size = 64
     return <div onClick={handleClick} style={{
@@ -37,24 +42,51 @@ const Brand = () => {
 
 const NavList = () => {
     const apps = useRequestApps()
+
+    const pathname = usePathname()
+
+    const activeApp = useMemo<AppStruct | undefined>(() => {
+        if (!pathname) return undefined
+        return apps.find(app => pathname.startsWith(app.path))
+    }, [apps, pathname])
+
     return <div>
-        {apps.map(app =>
-            <Link key={app.name} href={`/${app.name.toLowerCase()}`}>
-                <span
-                    style={{
-                        fontSize: '2rem',
-                        fontWeight: 'bold',
-                        color: app.accentColor,
-                        ...titleFont.style
-                    }}>{app.name}</span>
-            </Link>
-        )}
+        {activeApp ?
+            activeApp.subpaths.map(subpath =>
+                <Link key={subpath.name} href={subpath.path}>
+                    <span
+                        style={{
+                            fontSize: '1.5rem',
+                            fontWeight: 'bold',
+                            color: activeApp.accentColor,
+                            opacity: 0.6,
+                            ...titleFont.style
+                        }}>{subpath.name}</span>
+                </Link>
+            )
+            :
+            apps.map(app =>
+                <Link key={app.name} href={app.path}>
+                    <span
+                        style={{
+                            fontSize: '2rem',
+                            fontWeight: 'bold',
+                            color: app.accentColor,
+                            ...titleFont.style
+                        }}>{app.name}</span>
+                </Link>
+            )
+        }
 
     </div>
 }
 const Navbar = () => {
     return <nav
         style={{
+            // FIXME: how sticky works?
+            position: 'sticky',
+            top: 20,
+            zIndex: 100,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
