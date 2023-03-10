@@ -17,6 +17,6 @@ export const useStackStyle = (defaultStyles: CSSProperties, props: StackStylePro
             }
         }
         return style
-    }, [props])
+    }, [props, defaultStyles])
     return style
 }

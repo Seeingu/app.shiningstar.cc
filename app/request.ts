@@ -1,4 +1,3 @@
-import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { AppStruct } from "./shared/AppStruct"
 

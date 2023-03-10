@@ -26,5 +26,5 @@ export interface AppStruct {
     icon: URL
     accentColor: string
     screenshots: Array<Screenshot>
-    platforms: Array<Platform>
+    platform: Platform
 } 

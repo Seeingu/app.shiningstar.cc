@@ -1,5 +1,7 @@
+'use client'
 import Image from "next/image";
 import { titleFont } from "../font";
+import { useTranslation } from "../hooks/useLocale";
 import { knockApp } from "../shared/apps";
 import { AppStruct, PlatformOS, Screenshot } from "../shared/AppStruct";
 import { AppIntro } from "../ui/AppIntro";
@@ -29,13 +31,14 @@ const Screenshots = ({ app }: { app: AppStruct }) => {
     // only show first three screenshots
     const iOSScreenshots = app.screenshots.filter(s => s.os === PlatformOS.iOS).slice(0, 3)
     const macOSScreenshots = app.screenshots.filter(s => s.os === PlatformOS.macOS).slice(0, 3)
+    const t = useTranslation()
 
     return <div style={{ width: '100%' }}>
         <h2 style={{
             fontWeight: 'bold',
             padding: '16px 0',
             ...titleFont.style
-        }} >Screenshots</h2>
+        }} >{t('Screenshots')}</h2>
         <VStack >
             <PlatformScreenshotSection list={iOSScreenshots} platform={PlatformOS.iOS} />
 

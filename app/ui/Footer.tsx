@@ -1,5 +1,7 @@
+'use client'
 import Link from "next/link"
 import { CSSProperties } from "react"
+import { useTranslation } from "../hooks/useLocale"
 import { Center } from "./Center"
 
 // MARK: style
@@ -15,16 +17,17 @@ const Divider = () => {
 }
 
 export const Footer = () => {
+    const t = useTranslation()
     return <Center>
         <Link target={'_blank'} href="https://github.com/Seeingu">
             <span style={textStyle}>
-                About
+                {t('About')}
             </span>
         </Link>
         <Divider />
         <Link href="/contact">
             <span style={textStyle}>
-                Contact
+                {t('Contact')}
             </span>
         </Link>
     </Center>

@@ -8,6 +8,7 @@ import { IoChevronBackOutline } from 'react-icons/io5'
 import { useMemo } from 'react'
 import { titleFont } from '../font'
 import { AppStruct } from '../shared/AppStruct'
+import { useLocale, useTranslation } from '../hooks/useLocale'
 
 
 const useIsRootPath = () => {
@@ -41,6 +42,7 @@ const Brand = () => {
 }
 
 const NavList = () => {
+    const t = useTranslation()
     const apps = useRequestApps()
 
     const pathname = usePathname()
@@ -61,7 +63,7 @@ const NavList = () => {
                             color: activeApp.accentColor,
                             opacity: 0.6,
                             ...titleFont.style
-                        }}>{subpath.name}</span>
+                        }}>{t(subpath.name)}</span>
                 </Link>
             )
             :
@@ -73,7 +75,7 @@ const NavList = () => {
                             fontWeight: 'bold',
                             color: app.accentColor,
                             ...titleFont.style
-                        }}>{app.name}</span>
+                        }}>{t(app.name)}</span>
                 </Link>
             )
         }

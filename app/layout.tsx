@@ -1,13 +1,10 @@
-import styles from './layout.module.css'
 import './globals.css'
-import Navbar from './ui/Navbar'
-import { Footer } from './ui/Footer'
+import { MainPage } from './MainPage'
 
 export const metadata = {
   title: 'Apps',
   description: 'Apps made by Seeingu',
 }
-
 
 export default function RootLayout({
   children,
@@ -19,11 +16,9 @@ export default function RootLayout({
       <head>
       </head>
       <body>
-        <main className={styles.main}>
-          <Navbar />
+        <MainPage >
           {children}
-          <Footer />
-        </main>
+        </MainPage>
       </body>
     </html>
   )

@@ -1,6 +1,6 @@
-# 吱呀（KnockApp）隐私政策
+# 吱呀（KnockKnock）隐私政策
 
-“吱呀”（又名：KnockApp，以下称我们）是一个用于计时和提醒的多平台应用，支持在 iPhone、iPad、Macbook 上使用，此隐私政策在以上平台均适用。
+“吱呀”（又名：KnockKnock，以下称我们）是一个用于计时和提醒的多平台应用，支持在 iPhone、iPad、Macbook 上使用，此隐私政策在以上平台均适用。
 
 1. 收集与访问的信息
 

@@ -8,6 +8,7 @@ import { IoPhonePortraitOutline, IoDesktopOutline } from 'react-icons/io5'
 import { AppIcon, DownloadOniOSStoreIcon, DownloadOnmacOSStoreIcon } from './Icon'
 import { useIsModile } from '../platformCheck'
 import { descriptionFont, titleFont } from '../font'
+import { useTranslation } from '../hooks/useLocale'
 
 // MARK: App Intro
 const PlatformLink = ({ platform }: { platform: Platform }) => {
@@ -16,51 +17,28 @@ const PlatformLink = ({ platform }: { platform: Platform }) => {
     if (link == undefined) {
         return null
     }
-    // phone or tablet
-    if (isMobile && platform.os !== PlatformOS.macOS) {
-        return <Link href={link.url}>
-            <DownloadOniOSStoreIcon url={link.icon} />
-        </Link>
-    }
-    // desktop
-    if (!isMobile && platform.os === PlatformOS.macOS) {
-        return <Link href={link.url}>
-            <DownloadOnmacOSStoreIcon url={link.icon} />
-        </Link>
-
-    }
-
-    // check platform failed, show all icons
-    return <HStack>
-        {platform.links.map(link =>
-            <Link key={link.url} href={link.url}>
-                {platform.os == PlatformOS.macOS ?
-                    <DownloadOnmacOSStoreIcon url={link.icon} />
-                    :
-                    <DownloadOniOSStoreIcon url={link.icon} />
-                }
-            </Link>
-        )}
-    </HStack>
+    return <Link target={'_blank'} href={link.url}>
+        <DownloadOniOSStoreIcon url={link.icon} />
+    </Link>
 }
 
 export const AppIntro = ({ app }: { app: AppStruct }) => {
-    return <HStack key={app.name}>
+    const t = useTranslation()
+    return <HStack>
         <AppIcon url={app.icon} />
-        <VStack alignment="leading">
+
+        <VStack style={{
+            minWidth: '16rem'
+        }} alignment="leading">
             <div>
-                <h2 style={{ ...titleFont.style }}>{app.name}</h2>
-                <p style={{ ...descriptionFont.style, color: 'gray' }}>{app.description}</p>
+                <h2 style={{ ...titleFont.style }}>{t(app.name)}</h2>
+                <p style={{ ...descriptionFont.style, color: 'gray' }}>{t(app.description)}</p>
             </div>
             <HStack alignment={'leading'}>
                 <IoDesktopOutline size={32} />
                 <IoPhonePortraitOutline size={32} />
             </HStack>
-            <HStack>
-                {app.platforms.map(platform =>
-                    <PlatformLink key={platform.os} platform={platform} />
-                )}
-            </HStack>
+            <PlatformLink key={app.platform.os} platform={app.platform} />
         </VStack>
     </HStack>
 }
