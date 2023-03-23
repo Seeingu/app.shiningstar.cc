@@ -4,7 +4,7 @@ import { AppStruct, Platform, PlatformOS } from '../shared/AppStruct'
 import { HStack } from './HStack'
 import { VStack } from './VStack'
 import Link from 'next/link'
-import { IoPhonePortraitOutline, IoDesktopOutline } from 'react-icons/io5'
+import { IoPhonePortraitOutline, IoDesktopOutline, IoBuildOutline } from 'react-icons/io5'
 import { AppIcon, DownloadOniOSStoreIcon, DownloadOnmacOSStoreIcon } from './Icon'
 import { useIsModile } from '../platformCheck'
 import { descriptionFont, titleFont } from '../font'
@@ -13,9 +13,18 @@ import { useTranslation } from '../hooks/useLocale'
 // MARK: App Intro
 const PlatformLink = ({ platform }: { platform: Platform }) => {
     const isMobile = useIsModile()
+    const t = useTranslation()
     let link = platform.links[0]
     if (link == undefined) {
         return null
+    }
+    if (link.url.length === 0) {
+        return <HStack style={{
+            justifyContent: 'flex-start',
+            alignItems: 'center'
+        }}
+            alignment='leading'
+        ><IoBuildOutline /> {t("In Development")}</HStack>
     }
     return <Link target={'_blank'} href={link.url}>
         <DownloadOniOSStoreIcon url={link.icon} />

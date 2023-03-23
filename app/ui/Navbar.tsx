@@ -8,7 +8,9 @@ import { IoChevronBackOutline } from 'react-icons/io5'
 import { useMemo } from 'react'
 import { titleFont } from '../font'
 import { AppStruct } from '../shared/AppStruct'
-import { useLocale, useTranslation } from '../hooks/useLocale'
+import { useTranslation } from '../hooks/useLocale'
+import { Spacer } from './Spacer'
+import { HStack } from './HStack'
 
 
 const useIsRootPath = () => {
@@ -52,7 +54,12 @@ const NavList = () => {
         return apps.find(app => pathname.startsWith(app.path))
     }, [apps, pathname])
 
-    return <div>
+    return <HStack
+        style={{
+            alignItems: 'center',
+            maxWidth: 500
+        }}
+    >
         {activeApp ?
             activeApp.subpaths.map(subpath =>
                 <Link key={subpath.name} href={subpath.path}>
@@ -76,11 +83,12 @@ const NavList = () => {
                             color: app.accentColor,
                             ...titleFont.style
                         }}>{t(app.name)}</span>
+                    <Spacer />
                 </Link>
             )
         }
 
-    </div>
+    </HStack>
 }
 const Navbar = () => {
     return <nav

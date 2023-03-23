@@ -21,11 +21,39 @@ export const knockApp: AppStruct = {
         os: PlatformOS.iOS,
         links: [
             {
-                icon: '/Knock_download_iOS.svg',
+                icon: '/download_iOS.svg',
                 url: 'https://apps.apple.com/cn/app/knockknock/id6445857934'
             }
         ]
     }
 }
+export const lifelongListApp: AppStruct = {
+    name: 'Lifelong List',
+    path: '/plan',
+    description: 'Long term planning',
+    icon: '/LifelongList_Icon.png',
+    accentColor: '#79D870',
+    subpaths: [{ name: 'Privacy', path: '/plan/privacy' }],
+    screenshots: [{
+        os: PlatformOS.iOS,
+        url: ''
+    }, {
+        os: PlatformOS.iOS,
+        url: ''
+    }, {
+        os: PlatformOS.macOS,
+        url: ''
+    }],
+    platform: {
+        os: PlatformOS.iOS,
+        links: [
+            {
+                icon: '/download_iOS.svg',
+                // TODO: add app store link
+                url: ''
+            }
+        ]
+    }
+}
 
-export const apps: [AppStruct] = [knockApp]
+export const apps: AppStruct[] = [knockApp, lifelongListApp]
