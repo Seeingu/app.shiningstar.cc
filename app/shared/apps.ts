@@ -36,13 +36,13 @@ export const lifelongListApp: AppStruct = {
     subpaths: [{ name: 'Privacy', path: '/plan/privacy' }],
     screenshots: [{
         os: PlatformOS.iOS,
-        url: ''
+        url: '/LifelongList_iOS_DarkMode.jpg'
     }, {
         os: PlatformOS.iOS,
-        url: ''
+        url: '/LifelongList_iOS_Step.jpg'
     }, {
         os: PlatformOS.macOS,
-        url: ''
+        url: '/LifelongList_macOS.png'
     }],
     platform: {
         os: PlatformOS.iOS,
